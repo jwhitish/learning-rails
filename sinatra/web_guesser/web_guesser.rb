@@ -1,3 +1,5 @@
+#http://localhost:4567/
+
 require 'sinatra'
 require 'sinatra/reloader'
 
@@ -16,7 +18,7 @@ get '/' do
   end
 
   erb :index, :locals => {:number => $number, :message => message, :background => $background, :remaining_guesses => $remaining_guesses}
-end
+end #end get / route
 
 def check_guess(guess)
   if guess.nil?
