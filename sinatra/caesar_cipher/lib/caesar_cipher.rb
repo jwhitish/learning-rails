@@ -13,7 +13,6 @@ def encrypt(string, key = 0)
     end
   end
   shifted_char = shifted.map {|c| c.chr }.join
-  shifted_char
 end
 
 def decrypt(string, key = 0)
@@ -30,5 +29,4 @@ def decrypt(string, key = 0)
     end
   end
   shifted_char = shifted.map {|c| c.chr}.join
-  shifted_char
 end
