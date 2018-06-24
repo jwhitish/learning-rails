@@ -7,8 +7,8 @@ get '/' do
   word = params['word'].to_s
   shift = params['shift'].to_i
   if !shift.nil? && !word.nil?
-    @result = encrypt(word, shift)
-    if @result == nil
+    @result =  encrypt(word, shift)
+    if @result.nil?
       @result = 'Nil!'
     end
   else
