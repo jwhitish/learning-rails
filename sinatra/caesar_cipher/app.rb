@@ -8,7 +8,7 @@ get '/' do
   word = params['word'].to_s
   shift = params['shift'].to_i
   if !shift.nil? && !word.nil?
-    @result =  encrypt(word, shift)
+    params['mode'] == 'Encrypt' ? @result = encrypt(word, shift) : @result = decrypt(word, shift)
     if @result.nil?
       @result = 'Nil!'
     end
@@ -17,6 +17,3 @@ get '/' do
   end
   erb :index, :locals => {:result => @result}
 end
-
-
-# params['submit'] == 'Encrypt' ? $result = encrypt(word, shift) : $result = decrypt(word, shift)

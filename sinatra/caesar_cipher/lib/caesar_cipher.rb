@@ -31,7 +31,6 @@ def decrypt(string, key = 0)
     end
   end
   shifted_char = shifted.map {|c| c.chr}.join
+  result = shifted_char.to_s
+  result
 end
-
-
-encrypt('hello', 5)
