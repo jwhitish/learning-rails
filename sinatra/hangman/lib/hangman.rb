@@ -34,9 +34,7 @@ class Hangman
       puts "Misses: " + @already_guessed.join(",")
       puts "Word: " + @game_board.join(" ")
       @guess = prompt.downcase
-      if @guess == "menu"
-        self.menu
-      elsif @guess == "hint"
+      if @guess == "hint"
         self.hint
       elsif @guess == "cheater"
         self.cheater
@@ -81,36 +79,9 @@ class Hangman
     end
   end
 
-  def menu
-    menu_choice = prompt("Game Menu:\n1) Instructions\n2) Start a New Game\n3) Close Menu\nQ) Quit")
-    case menu_choice
-      when "1"
-        self.instructions
-      when "2"
-        self.newGame
-      when "3"
-        self.playGame
-      when "q"
-        abort("Goodbye!")
-    end
-  end
-
   def newGame
     newgame = Hangman.new
     newgame.playGame
-
-  end
-
-  def welcome
-    puts "\n\n                        ---- Welcome to Hangman! ----\n\n"
-    puts "                Type 'menu' at any time to open the game menu.\n\n"
-    self.menu
-  end
-
-  def instructions
-    puts "Instructions: "
-    puts "The computer will select a random word between 5 and 12 characters long. You will be shown the number of characters on a blank 'game board' and will guess the word one letter at a time. Each time you guess an incorrect letter, one 'miss' will be deducted from your balance until you reach zero.\n\nEach turn, you will be shown any incorrectly guessed letters, the 'game board' with all correct letters, and the 'misses' remaining. If you run out of 'misses', or if you guess the word correctly, the game is over.\n\nAt any time you can type 'menu' to return to the game menu, or guess the word by typing in the full word.\n\n"
-    self.menu
   end
 
   def playGame
@@ -120,6 +91,3 @@ class Hangman
   end
 
 end #class end
-
-newgame = Hangman.new
-newgame.welcome

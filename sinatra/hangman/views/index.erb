@@ -6,6 +6,24 @@
   </head>
   <body>
     <h1>Welcome to Hangman!</h1>
-  
+    <div class="body">
+      <p><strong>Instructions:</strong> The computer will select a random word between 5 and 12 characters long. You will be shown the number of characters on a blank game board and may guess the word one letter at a time. Each time you guess an incorrect letter, one miss will be deducted from your balance until you reach zero. Each turn, you will be shown any incorrectly guessed letters, the game board with all correct letters, and the misses remaining. If you run out of misses, or if you guess the word correctly, the game is over.</p>
+      <form>
+        <p><input class='button' type='submit' value='New Game' name='button' style='width: 120px;'/></p>
+      </form>
+      </br>
+      <p>
+        <span style="margin-right: 5%;"><strong>Misses Remaining:</strong> 6</span>
+        <span><strong>Letters Guessed:</strong> a, b, c</span>
+      </p>
+    </div>
+    <div class="gameboard">
+      <p><strong>Your word is:</strong> __ __ __ __ __ __ </p>
+      </br>
+      <form>
+        <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' value='Guess' name='button'/></span></p>
+      </form>
+      <p> Message goes here if present </p>
+    </div>
   </body>
 </html>

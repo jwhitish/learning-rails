@@ -9,7 +9,7 @@ p {
 
 body {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .button {
@@ -24,4 +24,15 @@ body {
 
 .button:hover {
   background-color: lightgray;
+}
+
+.body {
+  width: 75%;
+  margin: auto;
+}
+
+.gameboard {
+  width: 75%;
+  margin: auto;
+  margin-top: 5%;
 }
