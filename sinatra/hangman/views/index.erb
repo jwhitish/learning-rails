@@ -13,17 +13,17 @@
       </form>
       </br>
       <p>
-        <span style="margin-right: 5%;"><strong>Misses Remaining:</strong> 6</span>
-        <span><strong>Letters Guessed:</strong> a, b, c</span>
+        <span style="margin-right: 5%;"><strong>Misses Remaining: </strong> <%= @guesses %></span>
+        <span><strong>Letters Guessed:</strong> <%= @already_guessed %></span>
       </p>
     </div>
     <div class="gameboard">
-      <p><strong>Your word is:</strong> __ __ __ __ __ __ </p>
+      <p><strong>Your word is:</strong><%= @game_board %></p>
       </br>
-      <form>
-        <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' value='Guess' name='button'/></span></p>
+      <form method="post">
+        <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' formmethod= 'post' value='Guess' name='button'/></span></p>
       </form>
-      <p> Message goes here if present </p>
+      <p> Message: <%= @disp_message %> </p>
     </div>
   </body>
 </html>

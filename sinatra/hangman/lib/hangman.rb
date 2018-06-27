@@ -1,7 +1,6 @@
 #!/usr/bin/ruby
 
 class Hangman
-  require "yaml"
 
   def initialize
     @word_file = File.open('lib/5desk.txt', 'r') { |file| file.read }
@@ -21,14 +20,12 @@ class Hangman
 
   def createGameBoard
     @game_board = []
-    @word.length.times { @game_board.push("_") }
+    @word.length.times { @game_board.push("__") }
   end
 
   def turn
     if @guesses == 0
-      puts "\n\nThe word was: " + @word.join.to_s
-      puts "Out of guesses, Game Over!\n\n"
-      self.menu
+      @disp_message = "Game Over, Man! The word was: " + @word.join.to_s
     else
       puts "\n\nYou have #{@guesses} misses remaining."
       puts "Misses: " + @already_guessed.join(",")
@@ -64,18 +61,16 @@ class Hangman
 
   def hint
     hint = @word[rand(@word.length - 1)]
-    puts "Your hint is: " + hint.to_s
+    @disp_message = "Your hint is: " + hint.to_s
   end
 
   def cheater
-    puts "The word is: " + @word.join
+    @disp_message = "The word is: " + @word.join
   end
 
   def winner?
     if @game_board == @word
-      puts "The word was: " + @game_board.join.to_s
-      puts "You win!\n\n"
-      menu
+      @disp_message = "You Win! The word was: " + @game_board.join.to_s
     end
   end
 
