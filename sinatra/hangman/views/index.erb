@@ -8,8 +8,8 @@
     <h1>Welcome to Hangman!</h1>
     <div class="body">
       <p><strong>Instructions:</strong> The computer will select a random word between 5 and 12 characters long. You will be shown the number of characters on a blank game board and may guess the word one letter at a time. Each time you guess an incorrect letter, one miss will be deducted from your balance until you reach zero. Each turn, you will be shown any incorrectly guessed letters, the game board with all correct letters, and the misses remaining. If you run out of misses, or if you guess the word correctly, the game is over.</p>
-      <form>
-        <p><input class='button' type='submit' value='New Game' name='button' style='width: 120px;'/></p>
+      <form method="post">
+        <p><input class='button' type='submit' value="New Game" name='button' formmethod="post" style='width: 120px;'/></p>
       </form>
       </br>
       <p>
@@ -21,9 +21,10 @@
       <p><strong>Your word is:</strong><%= @game_board %></p>
       </br>
       <form method="post">
-        <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' formmethod= 'post' value='Guess' name='button'/></span></p>
+        <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' formmethod='post' value='Guess' name='button'/></span></p>
       </form>
       <p> Message: <%= @disp_message %> </p>
+      <p> ID: <%= session[:id] %> </p>
     </div>
   </body>
 </html>
