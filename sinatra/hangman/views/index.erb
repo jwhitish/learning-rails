@@ -14,17 +14,18 @@
       </br>
       <p>
         <span style="margin-right: 7%;"><strong>Misses Remaining: </strong> <%= @guesses %></span>
-        <span><strong>Letters Guessed:</strong> <%= @already_guessed %></span>
+        <span><strong>Letters Guessed:</strong> <%= @already_guessed.join(", ") %></span>
       </p>
     </div>
     <div class="gameboard">
-      <p><strong>Your word is: </strong><%= @game_board %></p>
+      <p><strong>Your word is: </strong><%= @game_board.join(" ") %></p>
       </br>
       <form method="post">
         <p><span><strong>Enter your guess:</strong> <input style="margin-left: 10px; margin-right: 30px;" size="12" type='text' name='text' /><input class='button' type='submit' formmethod='post' value='Guess' name='button'/></span></p>
       </form>
-      <p> Message: <%= @disp_message %> </p>
-      <p> ID: <%= session[:id] %> </p>
+      <p> <%= @disp_message %> </p>
+      <!--<p> ID: <%#<%= session[:id] %>%> </p>
+      <p> Word: <%= @word.join.to_s %> </p> -->
     </div>
   </body>
 </html>

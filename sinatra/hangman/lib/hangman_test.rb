@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-class Hangman
+#class Hangman
   def new_game
     @word_file = File.open('lib/5desk.txt', 'r') { |file| file.read }
     valid_words = @word_file.split.select { |word| word.length.between?(5,12) }
@@ -14,23 +14,20 @@ class Hangman
   def createGameBoard
     @game_board = []
     @word.length.times { @game_board.push("__") }
-    return @game_board.join(" ")
   end
 
   def turn
     if @guesses == 0
       @disp_message = "Game Over, Man! The word was: " + @word.join.to_s
     else
-      puts "\n\nYou have #{@guesses} misses remaining."
-      puts "Misses: " + @already_guessed.join(",")
-      puts "Word: " + @game_board.join(" ")
-      @guess = prompt.downcase
+      @guess = session[:guess]
       if @guess == "hint"
-        self.hint
+        hint
       elsif @guess == "cheater"
-        self.cheater
+        cheater
       elsif @word.join == @guess
         @disp_message = "You win! The word was: " + @word.join
+        @game_board = @word
       else
         if @word.include?(@guess)
           index = 0
@@ -47,7 +44,7 @@ class Hangman
           @guesses -= 1
         end
       end
-      winner?
+      game_over?
     end
   end
 
@@ -60,16 +57,13 @@ class Hangman
     @disp_message = "The word is: " + @word.join
   end
 
-  def winner?
+  def game_over?
     if @game_board == @word
-      @disp_message = "You Win! The word was: " + @game_board.join.to_s
+      @disp_message = "You win! The word was: " + @game_board.join.to_s
+    end
+    if @guesses < 0
+        @disp_message = "Game Over! Out of turns."
     end
   end
 
-  def playGame
-    until self.winner? || @guesses < 0
-      self.turn
-    end
-  end
-
-end #class end
+#end #class end
