@@ -5,8 +5,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Welcome to Hangman!</h1>
-    <div class="body">
+    <ul class="nav">
+      <li class="nav"><a href="/">Home</a></li>
+    </ul>
+    <h1 class="main">Welcome to Hangman!</h1>
+    <div class="main">
       <p><strong>Instructions:</strong> The computer will select a random word between 5 and 12 characters long. You will be shown the number of characters on a blank game board and may guess the word one letter at a time. Each time you guess an incorrect letter, one miss will be deducted from your balance until you reach zero. Each turn, you will be shown any incorrectly guessed letters, the game board with all correct letters, and the misses remaining. If you run out of misses, or if you guess the word correctly, the game is over.</p>
       <form method="post">
         <p><input class='button' type='submit' value="New Game" name='button' formmethod="post" style='width: 120px;'/></p>
@@ -17,7 +20,7 @@
         <span><strong>Letters Guessed:</strong> <%= @already_guessed.join(", ") %></span>
       </p>
     </div>
-    <div class="gameboard">
+    <div class="main gameboard">
       <p><strong>Your word is: </strong><%= @game_board.join(" ") %></p>
       </br>
       <form method="post">
