@@ -1,0 +1,23 @@
+<DOCTYPE! html>
+<html>
+  <head>
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul class="nav">
+      <li class="nav"><a href="/">Home</a></li>
+    </ul>
+    <h1 class="main">Just A Simple Mortgage Calculator</h1>
+    <div class="main">
+      <p>Just a simple mortgage calculator to calculate the present monthly payment on a mortgage.</p>
+      <form method="get">
+        <p><span>Principle Amount ($): <input style="margin-left: 10px; margin-right: 30px;" size="20" type='text' name='prin' required/> Downpayment ($): <input style="margin-left: 10px; margin-right: 30px;" size="20" type='text' name='dnpmt' /></span></p>
+        <p><span>Interest Rate: <input style="margin-left: 10px; margin-right: 0px;" size="5" type='text' name='rate' required/>% &nbsp&nbsp&nbsp&nbsp Term: <input style="margin-left: 10px; margin-right: 0px;" size="7" type='text' name='period' required/></span>&nbsp years</p>
+        <p><input class='button' type='submit' value='Submit' name='button'/></p>
+      </form>
+      </br>
+      <p>Monthly Payments: <%= "$" + $payment.to_s %></p>
+    </div>
+  </body>
+</html>

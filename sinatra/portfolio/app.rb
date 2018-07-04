@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "lib/hangman.rb"
 require_relative "lib/caesar_cipher.rb"
+require_relative "lib/mortgage_calc.rb"
 
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
@@ -13,6 +14,19 @@ set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
 
 get "/" do
   erb :index
+end
+
+get "/mortgage_calc" do
+  if params['button'] == 'Submit'
+    dnpmt = params['dnpmt'].to_i
+    principle = params['prin'].to_i
+    rate = params['rate'].to_i
+    period = params['period'].to_i
+    $payment = mortgage_calc(dnpmt, principle, rate, period)
+  else
+    $payment = ""
+  end
+  erb :mortgage_calc, :locals => {:payment => $payment}
 end
 
 get "/caesar_cipher" do

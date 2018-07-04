@@ -12,6 +12,10 @@ a {
   font-family: Lato;
 }
 
+input {
+  text-align: center;
+}
+
 ul .nav {
  list-style-type: none;
  margin: 0;
