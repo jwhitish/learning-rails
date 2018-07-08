@@ -17,9 +17,21 @@ get "/" do
 end
 
 get "/pomodoro" do
-  msg ="WORK"
-  pom_status = "Stopped"
+  msg = "WORK"
+  #pom_status = "Stopped"
+  if params['submit'] == 'Begin'
+    pom_status = "Working"
+  elsif params['submit'] == 'End'
+    pom_status = "Stopped"
+  else
+    pom_status = "Ready"
+  end
   erb :pomodoro, :locals => { :msg => msg, :pom_status => pom_status}
+end
+
+post "/pomodoro" do
+  #set session[:work_dur], session[:rest_dur], session[:sets], session[:break_site] to params
+  redirect "/pomodoro"
 end
 
 get "/mortgage_calc" do

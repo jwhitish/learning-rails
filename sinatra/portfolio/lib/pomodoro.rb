@@ -12,4 +12,4 @@ def pomodoro(work_dur, sets, rest_dur,break_site)
   puts 'Set complete!'
 end
 
-pomodoro(2,2,2,'www.google.com')
+#pomodoro(2,2,2,'www.google.com')
