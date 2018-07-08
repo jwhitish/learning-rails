@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "sinatra"
+gem "launchy"
 
 # group :development do
 #   gem "sinatra/reloader"

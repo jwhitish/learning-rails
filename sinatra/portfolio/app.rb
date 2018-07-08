@@ -16,6 +16,12 @@ get "/" do
   erb :index
 end
 
+get "/pomodoro" do
+  msg ="WORK"
+  pom_status = "Stopped"
+  erb :pomodoro, :locals => { :msg => msg, :pom_status => pom_status}
+end
+
 get "/mortgage_calc" do
   if params['button'] == 'Submit'
     dnpmt = params['dnpmt'].to_i

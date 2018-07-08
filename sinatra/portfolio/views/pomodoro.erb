@@ -1,0 +1,32 @@
+<DOCTYPE! html>
+<html>
+  <head>
+    <title>Simple Pomodoro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul class="nav">
+      <li class="nav"><a href="/">Home</a></li>
+    </ul>
+    <div class="main">
+    <h1>Simple Pomodoro Timer</h1>
+  </br>
+  </br>
+    <h1><span>It's time to: </span><span style="font-size: 42px;"><%= msg %></span></h1>
+  </br>
+  </br>
+    <form>
+      <p>How long should each work session be? &nbsp;&nbsp; <input type='number' name='work_dur' size="5"/></p>
+      <p>How long should each break be? &nbsp;&nbsp; <input  type='number' name='rest_dur' size="5"/>
+      </p>
+      <p>How many sets? &nbsp;&nbsp; <input  type='number' name='sets' size="5"/></p>
+      <p>Enter your favorite break website:&nbsp;&nbsp;http://<input  type='text' name='break_site'/></p>
+      <p>
+      <span><input class='button' type='submit' value='Begin' name='submit'/></span>
+      <span><input class='button' type='submit' value='End' name='submit'/></span>
+      </p>
+      <p>Currently: <%= pom_status %> </p>
+    </form>
+    </div>
+  </body>
+</html>
