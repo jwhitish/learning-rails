@@ -30,7 +30,14 @@ get "/pomodoro" do
 end
 
 post "/pomodoro" do
-  #set session[:work_dur], session[:rest_dur], session[:sets], session[:break_site] to params
+  if params['submit'] == 'Begin'
+    session[:work_dur] = params['work_dur']
+    session[:rest_dur] = params['rest_dur']
+    session[:sets] = params['sets']
+    session[:break_site] = params['break_site']
+  else #if == 'End'
+    session.clear
+  end
   redirect "/pomodoro"
 end
 
