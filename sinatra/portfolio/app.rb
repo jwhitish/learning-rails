@@ -7,24 +7,28 @@ require_relative "lib/mortgage_calc.rb"
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
 
-# before do
-#   puts '[Params]'
-#   p params
-# end
+before do
+  puts '[Params]'
+  p params
+end
 
 get "/" do
   erb :index
 end
 
 get "/pomodoro" do
-  msg = "WORK"
-  #pom_status = "Stopped"
+  if session[:id] == nil
+    session[:id] = rand(1000)
+  end
   if params['submit'] == 'Begin'
     pom_status = "Working"
+    msg = "WORK"
   elsif params['submit'] == 'End'
     pom_status = "Stopped"
+    msg = "REST"
   else
     pom_status = "Ready"
+    msg = ""
   end
   erb :pomodoro, :locals => { :msg => msg, :pom_status => pom_status}
 end
