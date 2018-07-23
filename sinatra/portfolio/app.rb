@@ -20,17 +20,17 @@ get "/pomodoro" do
   if session[:id] == nil
     session[:id] = rand(1000)
   end
-  if params['submit'] == "Begin"
+  if session[:submit] == "Begin"
     session[:pom_status] = "Working"
     session[:msg] = "WORK"
-  elsif params['submit'] == "End"
-    pom_status = "Stopped"
-    msg = "REST"
-  else # << Why is this branch executing?
+  elsif session[:submit] == "End"
+    session[:pom_status] = "Stopped"
+    session[:msg] = "REST"
+  else
     session[:pom_status] = "Ready"
     session[:msg] = "TEST"
   end
-  erb :pomodoro, :locals => { :msg => msg, :pom_status => pom_status}
+  erb :pomodoro, :locals => {}
 end
 
 post "/pomodoro" do
@@ -39,8 +39,10 @@ post "/pomodoro" do
     session[:rest_dur] = params['rest_dur']
     session[:sets] = params['sets']
     session[:break_site] = params['break_site']
+    session[:submit] = "Begin"
   else #if 'submit' == 'End'
     session.clear
+    session[:submit] = "End"
   end
   redirect "/pomodoro"
 end
