@@ -20,12 +20,35 @@ get "/pomodoro" do
   if session[:id] == nil
     session[:id] = rand(1000)
   end
+  if session[:curr_set] == nil
+    session[:curr_set] = 0
+  end
+  if session[:sets] == nil
+    session[:sets] = 0
+  end
+#need to pause before executing after redirect
   if session[:submit] == "Begin"
     session[:pom_status] = "Working"
-    session[:msg] = "WORK"
+    if session[:curr_set].to_i < session[:sets].to_i
+      if session[:msg] == "WORK"
+        session[:msg] = "REST"
+        session[:curr_set] += 1
+        redirect "/pomodoro"
+      else #if session[:msg] == "REST"
+        session[:msg] = "WORK"
+        session[:curr_set] += 1
+        redirect "/pomodoro"
+      end
+    else
+      session[:msg] = "STOP"
+      if session[:curr_set] == session[:sets]
+        redirect "/pomodoro"
+      end
+    end
+
   elsif session[:submit] == "End"
     session[:pom_status] = "Stopped"
-    session[:msg] = "REST"
+    session[:msg] = "STOP"
   else
     session[:pom_status] = "Ready"
     session[:msg] = "TEST"
