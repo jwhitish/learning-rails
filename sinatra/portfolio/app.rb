@@ -3,6 +3,7 @@ require "sinatra/reloader" if development?
 require_relative "lib/hangman.rb"
 require_relative "lib/caesar_cipher.rb"
 require_relative "lib/mortgage_calc.rb"
+require_relative "lib/pomodoro.rb"
 
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
@@ -21,16 +22,20 @@ get "/pomodoro" do
     session[:id] = rand(1000)
   end
   if session[:curr_set] == nil
-    session[:curr_set] = 0
+    session[:curr_set] = 1
   end
   if session[:sets] == nil
     session[:sets] = 0
   end
+  if session[:work_dur] == nil
+    session[:work_dur] = 0
+  end
 #need to pause before executing after redirect
   if session[:submit] == "Begin"
-    session[:pom_status] = "Working"
+    session[:pom_status] = "Running"
     if session[:curr_set].to_i < session[:sets].to_i
       if session[:msg] == "WORK"
+        #sleep(session[:work_dur.to_s.to_i])
         session[:msg] = "REST"
         session[:curr_set] += 1
         redirect "/pomodoro"
@@ -42,6 +47,8 @@ get "/pomodoro" do
     else
       session[:msg] = "STOP"
       if session[:curr_set] == session[:sets]
+        session.clear
+        session[:pom_status] = "Stopped"
         redirect "/pomodoro"
       end
     end

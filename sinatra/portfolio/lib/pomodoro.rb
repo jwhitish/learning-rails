@@ -1,15 +1,20 @@
 require 'Launchy'
 
-def pomodoro(work_dur, sets, rest_dur,break_site)
-  msg = ''
-  sets.times do
-    puts 'begin!'
-    sleep(work_dur)
-    puts 'rest!'
-    #Launchy.open("http://#{break_site}")
-    sleep(rest_dur)
-  end
-  puts 'Set complete!'
+# def pomodoro(work_dur, sets, rest_dur,break_site)
+#   msg = ''
+#   sets.times do
+#     puts 'begin!'
+#     sleep(work_dur)
+#     puts 'rest!'
+#     #Launchy.open("http://#{break_site}")
+#     sleep(rest_dur)
+#   end
+#   puts 'Set complete!'
+# end
+
+
+def work_time
 end
 
-#pomodoro(2,2,2,'www.google.com')
+def break_time
+end
