@@ -18,33 +18,16 @@ get "/" do
 end
 
 get "/pomodoro" do
-  if session[:id] == nil
-    session[:id] = rand(1000)
-  end
-  if session[:curr_set] == nil
-    session[:curr_set] = 1
-  end
-  if session[:sets] == nil
-    session[:sets] = 0
-  end
-  if session[:work_dur] == nil
-    session[:work_dur] = 0
-  end
-#need to pause before executing after redirect
+  set_pom_state
   if session[:submit] == "Begin"
     session[:pom_status] = "Running"
     if session[:curr_set].to_i < session[:sets].to_i
       if session[:msg] == "WORK"
-        #sleep(session[:work_dur.to_s.to_i])
-        session[:msg] = "REST"
-        session[:curr_set] += 1
-        redirect "/pomodoro"
+        break_time
       else #if session[:msg] == "REST"
-        session[:msg] = "WORK"
-        session[:curr_set] += 1
-        redirect "/pomodoro"
+        work_time
       end
-    else
+    else #if curr_set >= sets
       session[:msg] = "STOP"
       if session[:curr_set] == session[:sets]
         session.clear
@@ -52,11 +35,10 @@ get "/pomodoro" do
         redirect "/pomodoro"
       end
     end
-
-  elsif session[:submit] == "End"
+  elsif session[:submit] == "End" #user hits end
     session[:pom_status] = "Stopped"
     session[:msg] = "STOP"
-  else
+  else #no session cached/new user
     session[:pom_status] = "Ready"
     session[:msg] = "TEST"
   end
