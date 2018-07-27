@@ -29,14 +29,14 @@ def set_pom_state
     session[:rest_dur] = 0
   end
   if session[:break_site] == nil
-    session[:break_site] = 'www.google.com'
+    session[:break_site] = "www.google.com"
   end
 end
 
 def break_time
   session[:msg] = "REST"
   session[:curr_set] += 1
-  Launchy.open("http://#{session[:break_site]}")
+  #Launchy.open("http://#{session[:break_site]}")
   redirect "/pomodoro"
 end
 

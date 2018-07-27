@@ -21,6 +21,9 @@ get "/pomodoro" do
   set_pom_state
   if session[:submit] == "Begin"
     session[:pom_status] = "Running"
+    if session[:msg] == "REST"
+      sleep(session[:rest_dur].to_i)
+    end
     if session[:curr_set].to_i < session[:sets].to_i
       if session[:msg] == "WORK"
         break_time
