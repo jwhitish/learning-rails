@@ -30,7 +30,7 @@ get "/pomodoro" do
       else #if session[:msg] == "REST"
         work_time
       end
-    else #if curr_set >= sets
+    else #if curr_set >= sets.
       session[:msg] = "STOP"
       if session[:curr_set] == session[:sets]
         session.clear
