@@ -18,6 +18,7 @@ get "/" do
 end
 
 get "/pomodoro" do
+  sleep(2)
   set_pom_state
   if session[:submit] == "Begin"
     if session[:curr_set].to_i < session[:sets].to_i
@@ -56,6 +57,10 @@ post "/pomodoro" do
     session[:submit] = "End"
   end
   redirect "/pomodoro"
+end
+
+get "/ip_location" do
+  erb :ip_location
 end
 
 get "/mortgage_calc" do
