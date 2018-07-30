@@ -34,6 +34,7 @@ def set_pom_state
 end
 
 def break_time
+  sleep(session[:work_dur].to_i)
   session[:msg] = "REST"
   session[:curr_set] += 1
   #Launchy.open("http://#{session[:break_site]}")
@@ -41,6 +42,7 @@ def break_time
 end
 
 def work_time
+  sleep(session[:rest_dur].to_i)
   session[:msg] = "WORK"
   session[:curr_set] += 1
   redirect "/pomodoro"

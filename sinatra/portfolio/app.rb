@@ -20,10 +20,6 @@ end
 get "/pomodoro" do
   set_pom_state
   if session[:submit] == "Begin"
-    session[:pom_status] = "Running"
-    if session[:msg] == "REST"
-      sleep(session[:rest_dur].to_i)
-    end
     if session[:curr_set].to_i < session[:sets].to_i
       if session[:msg] == "WORK"
         break_time
@@ -31,25 +27,25 @@ get "/pomodoro" do
         work_time
       end
     else #if curr_set >= sets.
+      session.clear
       session[:msg] = "STOP"
-      if session[:curr_set] == session[:sets]
-        session.clear
-        session[:pom_status] = "Stopped"
-        redirect "/pomodoro"
-      end
+      session[:pom_status] = "Sets Complete"
     end
   elsif session[:submit] == "End" #user hits end
+    session.clear
     session[:pom_status] = "Stopped"
     session[:msg] = "STOP"
+    redirect "/pomodoro"
   else #no session cached/new user
     session[:pom_status] = "Ready"
-    session[:msg] = "TEST"
+    session[:msg] = "GET READY."
   end
   erb :pomodoro, :locals => {}
 end
 
 post "/pomodoro" do
   if params['submit'] == "Begin"
+    session[:pom_status] = "Running"
     session[:work_dur] = params['work_dur']
     session[:rest_dur] = params['rest_dur']
     session[:sets] = params['sets']
