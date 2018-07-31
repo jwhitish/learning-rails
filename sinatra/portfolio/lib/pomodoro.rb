@@ -24,7 +24,6 @@ end
 def break_time
   sleep(session[:work_dur].to_i)
   session[:msg] = "REST"
-  session[:curr_set] += 1
   #Launchy.open("http://#{session[:break_site]}")
   #redirect "/pomodoro"
 end

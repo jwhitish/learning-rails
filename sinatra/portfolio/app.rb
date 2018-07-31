@@ -18,7 +18,6 @@ get "/" do
 end
 
 get "/pomodoro" do
-  sleep(2)
   set_pom_state
   if session[:submit] == "Begin"
     if session[:curr_set].to_i < session[:sets].to_i
@@ -59,6 +58,26 @@ post "/pomodoro" do
   redirect "/pomodoro"
 end
 
+get "/pomodoro/work" do
+  erb :work
+end
+
+post "/pomodoro/work" do
+  session.clear
+  session[:submit] = "End"
+  redirect "/pomodoro"
+end
+
+get "/pomodoro/rest" do
+  erb :rest
+end
+
+post "/pomodoro/rest" do
+  session.clear
+  session[:submit] = "End"
+  redirect "/pomodoro"
+end
+
 get "/ip_location" do
   erb :ip_location
 end
@@ -92,8 +111,8 @@ get "/caesar_cipher" do
 end
 
 get "/hangman" do
-  if session[:id] == nil
-    session[:id] = rand(1000)
+  if session[:hangman_id] == nil
+    session[:hangman_id] = rand(1000)
     @disp_message = "New game, Begin!"
     new_game
     post_state
@@ -105,7 +124,7 @@ get "/hangman" do
   end
 
   erb :hangman, :locals => {:disp_message => @disp_message, :guesses => @guesses, :already_guessed => @already_guessed, :word => @word, :game_board => @game_board}
-end #end of get '/'
+end
 
 post "/hangman" do
   if params["button"] == "New Game"
@@ -115,7 +134,7 @@ post "/hangman" do
     session[:message] = session[:guess]
   end
   redirect "/hangman"
-end #end post '/'
+end
 
 helpers do
   def pre_state

@@ -1,0 +1,26 @@
+<DOCTYPE! html>
+<html>
+  <head>
+    <title>Simple Pomodoro</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <ul class="nav">
+      <li class="nav"><a href="/">Home</a></li>
+    </ul>
+    <div class="main">
+    <h1>Simple Pomodoro Timer</h1>
+  </br>
+  </br>
+    <h1><span>It's time to: </span><span style="font-size: 42px;">REST!</span></h1>
+  </br>
+  </br>
+    <form method="post">
+      <input class='button' type='submit' value='End' name='submit'/>
+    </form>
+  </br>
+      <p>Currently: <%= session[:pom_status] %> </p>
+      <p>Session ID: <%= session[:id] %></p>
+      <p>Current Set: <%= session[:curr_set] %></p>
+  </body>
+</html>
