@@ -5,7 +5,7 @@ def set_pom_state
     session[:id] = rand(1000)
   end
   if session[:curr_set] == nil
-    session[:curr_set] = 1
+    session[:curr_set] = 0
   end
   if session[:sets] == nil
     session[:sets] = 0
@@ -22,15 +22,30 @@ def set_pom_state
 end
 
 def break_time
-  sleep(session[:work_dur].to_i)
-  session[:msg] = "REST"
-  #Launchy.open("http://#{session[:break_site]}")
-  #redirect "/pomodoro"
+  if session[:curr_set].to_i >= session[:sets].to_i
+    session.clear
+    session[:submit] = "End"
+    session[:pom_status] = "Stopped"
+    session[:msg] = "STOP"
+    redirect "/pomodoro"
+  else #session in progress
+    session[:curr_set] += 1
+    #Launchy.open("http://#{session[:break_site]}")
+    #sleep(session[:work_dur].to_i)
+    #redirect "/pomodoro/work"
+  end
 end
 
 def work_time
-  sleep(session[:rest_dur].to_i)
-  session[:msg] = "WORK"
-  session[:curr_set] += 1
-  #redirect "/pomodoro"
+  if session[:curr_set].to_i >= session[:sets].to_i
+    session.clear
+    session[:submit] = "End"
+    session[:pom_status] = "Stopped"
+    session[:msg] = "STOP"
+    redirect "/pomodoro"
+  else #session in progress
+    session[:curr_set] += 1
+    #sleep(session[:rest_dur].to_i)
+    #redirect "/pomodoro/rest"
+  end
 end

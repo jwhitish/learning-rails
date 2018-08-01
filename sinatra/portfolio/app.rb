@@ -18,28 +18,11 @@ get "/" do
 end
 
 get "/pomodoro" do
-  set_pom_state
-  if session[:submit] == "Begin"
-    if session[:curr_set].to_i < session[:sets].to_i
-      if session[:msg] == "WORK"
-        break_time
-      else #if session[:msg] == "REST"
-        work_time
-      end
-    else #if curr_set >= sets.
-      session.clear
-      session[:msg] = "STOP"
-      session[:pom_status] = "Sets Complete"
-    end
-  elsif session[:submit] == "End" #user hits end
-    session.clear
-    session[:pom_status] = "Stopped"
-    session[:msg] = "STOP"
-    redirect "/pomodoro"
-  else #no session cached/new user
+  if session[:id] == nil
     session[:pom_status] = "Ready"
     session[:msg] = "GET READY."
   end
+  set_pom_state
   erb :pomodoro, :locals => {}
 end
 
@@ -51,14 +34,18 @@ post "/pomodoro" do
     session[:sets] = params['sets']
     session[:break_site] = params['break_site']
     session[:submit] = "Begin"
+    redirect "/pomodoro/work"
   else #if 'submit' == 'End'
     session.clear
     session[:submit] = "End"
+    session[:pom_status] = "Stopped"
+    session[:msg] = "STOP"
+    redirect "/pomodoro"
   end
-  redirect "/pomodoro"
 end
 
 get "/pomodoro/work" do
+  work_time
   erb :work
 end
 
@@ -69,6 +56,7 @@ post "/pomodoro/work" do
 end
 
 get "/pomodoro/rest" do
+  break_time
   erb :rest
 end
 
