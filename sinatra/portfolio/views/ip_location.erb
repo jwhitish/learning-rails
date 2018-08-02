@@ -9,12 +9,12 @@
       <li class="nav"><a href="/">Home</a></li>
     </ul>
     <div class="main">
-    <h1>Your IPv6 address is: <%= request.ip %></h1>
+    <h1>Your <%= @typ[0].capitalize + @typ[1].capitalize + @typ[2..-1] %> address is: <%= @ip %></h1>
   </br>
   </br>
-    <h1><span>You're located in: </span><span>location</span></h1>
+    <h1>Looks like you're located in: <%= @cty %></h1>
+    <h4>(How's the weather out there?)</h4>
   </br>
-  </br>
-    <p>This is an explanation line.</p>
+    <p>Assuming the client (you) is not using a vpn or other IP masking software, this simple script grabs the client IP address then makes an API call to IPStack to get the IP address type (IPv4 or IPv6) and the location of the client. Then a simple method is run to parse the JSON response and display it above.</p>
   </body>
 </html>

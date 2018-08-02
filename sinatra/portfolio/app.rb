@@ -4,6 +4,7 @@ require_relative "lib/hangman.rb"
 require_relative "lib/caesar_cipher.rb"
 require_relative "lib/mortgage_calc.rb"
 require_relative "lib/pomodoro.rb"
+require_relative "lib/ip_location.rb"
 
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
@@ -67,7 +68,11 @@ post "/pomodoro/rest" do
 end
 
 get "/ip_location" do
-  erb :ip_location
+  @ip = request.ip
+  get_type("76.126.148.224")
+  get_city("76.126.148.224")
+
+  erb :ip_location, :locals => {:cty => @cty, :typ => @typ, :ip => @ip}
 end
 
 get "/mortgage_calc" do
