@@ -5,6 +5,7 @@ require_relative "lib/caesar_cipher.rb"
 require_relative "lib/mortgage_calc.rb"
 require_relative "lib/pomodoro.rb"
 require_relative "lib/ip_location.rb"
+require 'dotenv/load'
 
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds

@@ -13,7 +13,17 @@ def get_type(ip)
 end
 
 def get_city(ip)
-  city = HTTParty.get("http://api.ipstack.com/#{ip}?access_key=3817b6f234074b09022412c179ac185a&fields=city")
+  city = HTTParty.get("http://api.ipstack.com/#{ip}?access_key=#{ENV['IPSTACKKEY']}&fields=city")
   @cty = JSON.parse(city.body)
   @cty = @cty["city"]
 end
+
+def test(ip)
+  type = HTTParty.get("http://api.ipstack.com/#{ip}?access_key=#{ENV['IPSTACKKEY']}&fields=type")
+  @typ = JSON.parse(type.body)
+  @typ = @typ["type"]
+  p @typ
+  p @typ.class
+end
+
+test("76.126.148.224")
