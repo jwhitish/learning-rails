@@ -4,6 +4,7 @@ gem "sinatra"
 gem "httparty"
 gem "json"
 gem "dotenv"
+#gem "Launchy"
 
 # group :development do
 #   gem "sinatra/reloader"

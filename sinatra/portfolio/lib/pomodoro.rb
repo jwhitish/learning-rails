@@ -1,4 +1,4 @@
-require 'Launchy'
+#require 'Launchy'
 
 def set_pom_state
   if session[:id] == nil
