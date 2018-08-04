@@ -70,8 +70,8 @@ end
 
 get "/ip_location" do
   @ip = request.ip
-  get_type("76.126.148.224")
-  get_city("76.126.148.224")
+  get_type("#{@ip}")
+  get_city("#{@ip}")
 
   erb :ip_location, :locals => {:cty => @cty, :typ => @typ, :ip => @ip}
 end

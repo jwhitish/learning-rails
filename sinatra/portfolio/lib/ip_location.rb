@@ -26,4 +26,4 @@ def test(ip)
   p @typ.class
 end
 
-test("76.126.148.224")
+#test("76.126.148.224")
