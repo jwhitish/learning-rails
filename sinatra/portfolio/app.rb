@@ -10,10 +10,10 @@ require 'dotenv/load'
 enable :sessions
 set :session_secret, "super_secret", :expire_after => 3600 #1hr in seconds
 
-before do
-  puts '[Params]'
-  p params
-end
+# before do
+#   puts '[Params]'
+#   p params
+# end
 
 get "/" do
   erb :index
