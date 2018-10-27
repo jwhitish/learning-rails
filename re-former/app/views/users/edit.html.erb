@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign up</title>
+</head>
+<body>
+  <%= form_for @user do |f| %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+    <%= f.label :username, "Username: " %>
+    <%= f.text_field :username, placeholder: "Test" %></br>
+    <%= f.label :email, "Email: " %>
+    <%= f.text_field :email, placeholder: "test@test.com" %></br>
+    <%= f.label :password, "Password: " %>
+    <%= f.password_field :password, placeholder: "123456" %></br>
+    <%= f.submit "Submit" %>
+  <% end %>
+
+</body>
+</html>
